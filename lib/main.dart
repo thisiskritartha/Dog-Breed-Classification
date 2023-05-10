@@ -1,3 +1,4 @@
+import 'package:dog_breed_classification/views/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,14 @@ class myApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp();
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      getPages: [
+        GetPage(name: '/welcome_view', page: () => WelcomeView()),
+      ],
+    );
   }
 }
