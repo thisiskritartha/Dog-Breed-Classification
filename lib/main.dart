@@ -1,4 +1,5 @@
 import 'package:dog_breed_classification/views/homepage_view.dart';
+import 'package:dog_breed_classification/views/scanner_view.dart';
 import 'package:dog_breed_classification/views/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class myApp extends StatelessWidget {
       home: HomepageView(),
       getPages: [
         GetPage(name: '/welcome_view', page: () => WelcomeView()),
+        GetPage(name: '/scanner_view', page: () => ScannerView()),
       ],
     );
   }
