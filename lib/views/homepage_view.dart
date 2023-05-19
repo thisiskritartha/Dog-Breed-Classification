@@ -6,6 +6,7 @@ import 'available_breeds_view.dart';
 import 'scanner_view.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:dog_breed_classification/extension/app_color.dart';
 
 class HomepageView extends StatefulWidget {
   const HomepageView({Key? key}) : super(key: key);
@@ -27,28 +28,10 @@ class _HomepageViewState extends State<HomepageView> {
     ];
 
     return Scaffold(
-      body: pages[currentIndex],
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   shape: RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.vertical(
-      //       bottom: Radius.circular(4.5.wp),
-      //     ),
-      //   ),
-      //   shadowColor: Colors.grey,
-      //   backgroundColor: Colors.green,
-      //   title: Text(
-      //     'DOG BREED CLASSIFICATION',
-      //     style: TextStyle(
-      //       fontWeight: FontWeight.bold,
-      //       fontSize: 5.0.wp,
-      //       letterSpacing: 0.3.wp,
-      //     ),
-      //   ),
-      // ),
+      body: SafeArea(child: pages[currentIndex]),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colors.green,
+          color: color,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(6.0.wp),
             topRight: Radius.circular(6.0.wp),
@@ -64,7 +47,7 @@ class _HomepageViewState extends State<HomepageView> {
             gap: 3.5.wp,
             iconSize: 7.5.wp,
             backgroundColor: Colors.transparent,
-            activeColor: Colors.black87,
+            activeColor: Colors.grey,
             tabBackgroundColor: Colors.black12,
             padding: EdgeInsets.all(4.0.wp),
             tabs: [

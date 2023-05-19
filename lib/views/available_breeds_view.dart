@@ -1,6 +1,7 @@
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:dog_breed_classification/extension/available_breeds.dart';
+import 'package:dog_breed_classification/extension/app_color.dart';
 
 class AvailableBreedsView extends StatefulWidget {
   const AvailableBreedsView({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _AvailableBreedsViewState extends State<AvailableBreedsView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green,
+          backgroundColor: color,
           title: Text(
             'Search Breeds',
             style: TextStyle(
@@ -42,6 +43,7 @@ class _AvailableBreedsViewState extends State<AvailableBreedsView> {
             var res = breeds[index];
             return ListTile(
               title: Text(res),
+              leading: Text('${index + 1}'),
             );
           },
         ));

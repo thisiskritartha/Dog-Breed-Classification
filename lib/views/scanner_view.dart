@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:dog_breed_classification/extension/app_color.dart';
 
 class ScannerView extends StatefulWidget {
   const ScannerView({Key? key}) : super(key: key);
@@ -13,32 +15,52 @@ class ScannerView extends StatefulWidget {
 class _ScannerViewState extends State<ScannerView> {
   late ImagePicker picker;
   File? _image;
-  String dogBreed = 'Dog Breed';
-  String dogProb = '80%';
+  String dogBreed = '';
+  String dogProb = '';
+  late List output;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     picker = ImagePicker();
+    loadModel();
   }
 
   @override
   void dispose() {
+    Tflite.close();
     super.dispose();
   }
 
   imageFromGallery() async {
     final XFile? pickFile = await picker.pickImage(
       source: ImageSource.gallery,
-      maxHeight: 300.0,
-      maxWidth: 300.0,
+      // maxHeight: 350.0,
+      // maxWidth: 300.0,
     );
     if (pickFile != null) {
       setState(() {
         _image = File(pickFile.path);
+        detectImage();
       });
     }
+  }
+
+  detectImage() async {
+    var recognitions = await Tflite.runModelOnImage(
+        path: _image!.path, // required
+        imageMean: 127.5, // defaults to 127.5
+        imageStd: 127.5, // defaults to 1.0
+        numResults: 2, // defaults to 5
+        threshold: 0.5, // defaults to 0.1
+        asynch: true // defaults to true
+        );
+
+    setState(() {
+      output = recognitions!;
+      dogBreed = output[0]['label'];
+      dogProb = (output[0]['confidence'] * 95).toStringAsFixed(2);
+    });
   }
 
   imageFromCamera() async {
@@ -46,7 +68,18 @@ class _ScannerViewState extends State<ScannerView> {
     _image = File(pickFile!.path);
     setState(() {
       _image;
+      detectImage();
     });
+  }
+
+  loadModel() async {
+    dogBreed = (await Tflite.loadModel(
+      model: "assets/ml/model_unquant_real.tflite",
+      labels: "assets/ml/labels_real.txt",
+      numThreads: 1,
+      isAsset: true,
+      useGpuDelegate: false,
+    ))!;
   }
 
   @override
@@ -64,10 +97,22 @@ class _ScannerViewState extends State<ScannerView> {
                 bottomLeft: Radius.circular(10.0.wp),
                 bottomRight: Radius.circular(10.0.wp),
               ),
-              image: const DecorationImage(
-                image: AssetImage('assets/background.jpg'),
-                fit: BoxFit.cover,
-              ),
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 10.0,
+                  color: Colors.grey,
+                  offset: Offset(10, 10),
+                )
+              ],
+              image: _image == null
+                  ? const DecorationImage(
+                      image: AssetImage('assets/images/background.jpg'),
+                      fit: BoxFit.cover,
+                    )
+                  : DecorationImage(
+                      image: FileImage(File(_image!.path)),
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
         ),
@@ -78,18 +123,21 @@ class _ScannerViewState extends State<ScannerView> {
           child: Column(
             children: [
               Text(
-                'Prediction',
+                'Breed Prediction',
                 style: TextStyle(
                   fontSize: 10.0.wp,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.3.wp,
+                  color: color,
                 ),
               ),
               SizedBox(
-                height: size.height * 0.01,
+                height: size.height * 0.003,
               ),
               Text(
-                '$dogProb - $dogBreed',
+                _image == null
+                    ? 'Confidence Level - Dog Breed'
+                    : '$dogProb% - $dogBreed',
                 style: TextStyle(
                   fontSize: 6.0.wp,
                   color: Colors.green,
@@ -111,7 +159,7 @@ class _ScannerViewState extends State<ScannerView> {
                         style: OutlinedButton.styleFrom(
                           shape: const CircleBorder(),
                           side: BorderSide(
-                            color: Colors.green,
+                            color: color,
                             width: 0.8.wp,
                           ),
                         ),
@@ -149,7 +197,7 @@ class _ScannerViewState extends State<ScannerView> {
                         style: OutlinedButton.styleFrom(
                           shape: const CircleBorder(),
                           side: BorderSide(
-                            color: Colors.green,
+                            color: color,
                             width: 0.8.wp,
                           ),
                         ),

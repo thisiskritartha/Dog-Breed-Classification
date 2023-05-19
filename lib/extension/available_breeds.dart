@@ -42,6 +42,7 @@ List<String> breeds = [
   "Great Perenees",
   "Greyhound",
   "Groenendael",
+  "Himalayan Sheepdog",
   "Irish Spaniel",
   "Irish Wolfhound",
   "Japanese Spaniel",
