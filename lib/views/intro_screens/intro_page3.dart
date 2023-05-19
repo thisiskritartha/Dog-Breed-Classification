@@ -1,3 +1,4 @@
+import 'package:dog_breed_classification/extension/app_color.dart';
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -16,19 +17,39 @@ class _IntroPage3State extends State<IntroPage3> {
     PermissionStatus status = await Permission.camera.request();
     setState(() {
       if (status.isGranted) {
-        _permissionStatus = 'Permission granted!';
+        _permissionStatus = 'Permission Granted';
         Get.snackbar(
           _permissionStatus,
           'Thank you for your permission.',
           snackPosition: SnackPosition.TOP,
           duration: const Duration(seconds: 3),
-          backgroundColor: Colors.grey[800],
+          backgroundColor: color,
           colorText: Colors.white,
+          // padding: EdgeInsets.symmetric(
+          //   horizontal: 15.0.wp,
+          //   vertical: 3.0.wp,
+          // ),
         );
       } else if (status.isDenied) {
-        _permissionStatus = 'Permission denied!';
+        _permissionStatus = 'Permission Denied';
+        Get.snackbar(
+          _permissionStatus,
+          'This app requires the Camera and Gallery permission in order to classify the breed.',
+          snackPosition: SnackPosition.TOP,
+          duration: const Duration(seconds: 3),
+          backgroundColor: color,
+          colorText: Colors.black,
+        );
       } else if (status.isPermanentlyDenied) {
-        _permissionStatus = 'Permission permanently denied!';
+        _permissionStatus = 'Permission Permanently Denied!';
+        Get.snackbar(
+          _permissionStatus,
+          'This app requires the Camera and Gallery permission in order to classify the breed.',
+          snackPosition: SnackPosition.TOP,
+          duration: const Duration(seconds: 3),
+          backgroundColor: color,
+          colorText: Colors.black,
+        );
       }
     });
   }
@@ -69,6 +90,9 @@ class _IntroPage3State extends State<IntroPage3> {
                 onPressed: () {
                   _requestPermission();
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(color),
+                ),
                 child: const Text('Get Permission'),
               ),
             ],
