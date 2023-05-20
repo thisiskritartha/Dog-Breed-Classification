@@ -44,6 +44,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   permission_handler: ^10.2.0
   shared_preferences: ^2.1.1
+  url_launcher: ^6.1.11
 
 
 dev_dependencies:
