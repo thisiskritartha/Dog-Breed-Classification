@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 
    <application
-        android:label="dog_breed_classification"
+        android:label="PupIdentify"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

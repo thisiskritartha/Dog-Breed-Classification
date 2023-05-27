@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'available_breeds_view.dart';
+import 'live_feed_view.dart';
 import 'scanner_view.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,9 +23,9 @@ class _HomepageViewState extends State<HomepageView> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final List<Widget> pages = [
-      ScannerView(),
-      AvailableBreedsView(),
-      AboutThisApp(),
+      const ScannerView(),
+      const AvailableBreedsView(),
+      const AboutThisApp(),
     ];
 
     return Scaffold(
@@ -39,56 +40,61 @@ class _HomepageViewState extends State<HomepageView> {
         ),
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: 1.5.wp,
-            vertical: 1.3.wp,
+            horizontal: 1.0.wp,
+            vertical: 1.5.wp,
           ),
           child: GNav(
             haptic: true, // haptic feedback
-            gap: 3.5.wp,
+            gap: 3.0.wp,
             iconSize: 7.5.wp,
             backgroundColor: Colors.transparent,
             activeColor: Colors.grey,
             tabBackgroundColor: Colors.black12,
-            padding: EdgeInsets.all(4.0.wp),
+            padding: EdgeInsets.all(3.0.wp),
             tabs: [
               GButton(
-                icon: Icons.camera_alt,
+                icon: FontAwesomeIcons.camera,
                 text: 'Scanner',
                 iconActiveColor: Colors.white,
                 iconColor: Colors.white,
                 textStyle: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 0.3.wp,
-                  fontSize: 4.5.wp,
+                  letterSpacing: 0.2.wp,
+                  fontSize: 4.6.wp,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomepageView(),
+                    ),
+                  );
+                },
               ),
               GButton(
-                icon: Icons.search,
+                icon: FontAwesomeIcons.search,
                 text: 'Available Breeds',
                 iconActiveColor: Colors.white,
                 iconColor: Colors.white,
                 textStyle: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 0.3.wp,
-                  fontSize: 4.5.wp,
+                  letterSpacing: 0.2.wp,
+                  fontSize: 4.6.wp,
                 ),
-                onPressed: () {},
               ),
               GButton(
-                icon: FontAwesomeIcons.paw,
+                icon: FontAwesomeIcons.dog,
                 text: 'About this App',
                 iconActiveColor: Colors.white,
                 iconColor: Colors.white,
                 textStyle: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 0.3.wp,
-                  fontSize: 4.5.wp,
+                  letterSpacing: 0.2.wp,
+                  fontSize: 4.6.wp,
                 ),
-                onPressed: () {},
               ),
             ],
             selectedIndex: currentIndex,

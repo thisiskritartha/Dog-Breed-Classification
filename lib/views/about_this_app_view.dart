@@ -40,7 +40,7 @@ class _AboutThisAppState extends State<AboutThisApp> {
             ExpansionTileWidget(
               title: 'How accurate is this app exactly?',
               description:
-                  "This app was trained with about 10000 images to learn distinguishing 71 individual breeds. As evaluated on about 3200 independent test images, there is a general probability of approximately 95% for the correct breed to be shown in the result. The threshold for our Model is 50% i.e Our app will only show the output if its Confidence level(or Probability) is more or equal to 50%. The mean and standard deviation of pixel values in an image or a set of images is taken as 127.5 for our application.",
+                  "This app was trained with 7,189 images to learn distinguishing 71 individual breeds. As evaluated on about 1,755 independent test images, there is a general probability of approximately 95% for the correct breed to be shown in the result. The threshold for our Model is 50% i.e Our app will only show the output if its Confidence level(or Probability) is more or equal to 50%. The mean and standard deviation of pixel values in an image or a set of images is taken as 127.5 for our application.",
             ),
             ExpansionTileWidget(
               title: 'What are the limitations of this app?',
@@ -180,7 +180,7 @@ class _AboutThisAppState extends State<AboutThisApp> {
                       color: Colors.black,
                     ),
                     title: Text(
-                      'Lijesh Subedhi',
+                      'Lijesh Subedi',
                       style: TextStyle(
                         fontSize: 4.8.wp,
                         fontWeight: FontWeight.w500,

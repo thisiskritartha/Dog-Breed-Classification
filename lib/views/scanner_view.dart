@@ -1,9 +1,13 @@
 import 'dart:io';
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:dog_breed_classification/extension/app_color.dart';
+import 'live_feed_view.dart';
 
 class ScannerView extends StatefulWidget {
   const ScannerView({Key? key}) : super(key: key);
@@ -23,63 +27,68 @@ class _ScannerViewState extends State<ScannerView> {
   void initState() {
     super.initState();
     picker = ImagePicker();
-    loadModel();
+    loadModel().then((value) {
+      setState(() {});
+    });
   }
 
   @override
-  void dispose() {
-    Tflite.close();
+  void dispose() async {
+    await Tflite.close();
     super.dispose();
   }
 
   imageFromGallery() async {
     final XFile? pickFile = await picker.pickImage(
       source: ImageSource.gallery,
-      // maxHeight: 350.0,
-      // maxWidth: 300.0,
     );
-    if (pickFile != null) {
-      setState(() {
-        _image = File(pickFile.path);
-        detectImage();
-      });
-    }
+    if (pickFile == null) return;
+    setState(() {
+      _image = File(pickFile.path);
+    });
+    detectImage(_image!);
   }
 
-  detectImage() async {
-    var recognitions = await Tflite.runModelOnImage(
-        path: _image!.path, // required
+  detectImage(File image) async {
+    List? recognitions;
+    try {
+      recognitions = await Tflite.runModelOnImage(
+        path: image!.path,
         imageMean: 127.5, // defaults to 127.5
         imageStd: 127.5, // defaults to 1.0
         numResults: 2, // defaults to 5
         threshold: 0.5, // defaults to 0.1
-        asynch: true // defaults to true
-        );
-
+        asynch: true, // defaults to true
+      );
+    } catch (e) {
+      print('Exception occurred 💥💥💥: $e');
+    }
+    print('Print: $recognitions');
     setState(() {
       output = recognitions!;
       dogBreed = output[0]['label'];
-      dogProb = (output[0]['confidence'] * 95).toStringAsFixed(2);
+      dogProb = (output[0]['confidence'] * 100).toStringAsFixed(2);
     });
   }
 
   imageFromCamera() async {
     final XFile? pickFile = await picker.pickImage(source: ImageSource.camera);
     _image = File(pickFile!.path);
+
     setState(() {
       _image;
-      detectImage();
+      detectImage(_image!);
     });
   }
 
   loadModel() async {
-    dogBreed = (await Tflite.loadModel(
-      model: "assets/ml/model_unquant_real.tflite",
-      labels: "assets/ml/labels_real.txt",
+    await Tflite.loadModel(
+      model: "assets/ml/model_v2.tflite",
+      labels: "assets/ml/labels_v2.txt",
       numThreads: 1,
       isAsset: true,
       useGpuDelegate: false,
-    ))!;
+    );
   }
 
   @override
@@ -88,7 +97,7 @@ class _ScannerViewState extends State<ScannerView> {
     return Stack(
       children: [
         Positioned(
-          height: size.height * 0.4,
+          height: size.height * 0.44,
           width: size.width,
           child: Container(
             decoration: BoxDecoration(
@@ -118,14 +127,14 @@ class _ScannerViewState extends State<ScannerView> {
         ),
         Positioned(
           top: size.height * 0.5,
-          height: size.height * 0.5,
+          height: size.height * 0.55,
           width: size.width,
           child: Column(
             children: [
               Text(
                 'Breed Prediction',
                 style: TextStyle(
-                  fontSize: 10.0.wp,
+                  fontSize: 10.5.wp,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.3.wp,
                   color: color,
@@ -139,7 +148,7 @@ class _ScannerViewState extends State<ScannerView> {
                     ? 'Confidence Level - Dog Breed'
                     : '$dogProb% - $dogBreed',
                 style: TextStyle(
-                  fontSize: 6.0.wp,
+                  fontSize: 6.4.wp,
                   color: Colors.green,
                   letterSpacing: 0.4.wp,
                 ),
@@ -157,17 +166,17 @@ class _ScannerViewState extends State<ScannerView> {
                           imageFromCamera();
                         },
                         style: OutlinedButton.styleFrom(
-                          shape: const CircleBorder(),
+                          shape: const StadiumBorder(),
                           side: BorderSide(
                             color: color,
-                            width: 0.8.wp,
+                            width: 1.0.wp,
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(4.0.wp),
+                          padding: EdgeInsets.all(4.6.wp),
                           child: Icon(
-                            Icons.camera_alt,
-                            size: 10.0.wp,
+                            FontAwesomeIcons.camera,
+                            size: 9.4.wp,
                             color: Colors.black,
                           ),
                         ),
@@ -179,14 +188,57 @@ class _ScannerViewState extends State<ScannerView> {
                           style: TextStyle(
                             fontSize: 5.0.wp,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.4),
                           ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(
-                    width: size.width * 0.08,
+                    width: size.width * 0.04,
+                  ),
+                  Column(
+                    children: [
+                      OutlinedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LiveFeedView(),
+                            ),
+                          );
+                        },
+                        style: OutlinedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          side: BorderSide(
+                            color: color,
+                            width: 1.5.wp,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(7.0.wp),
+                          child: Icon(
+                            FontAwesomeIcons.video,
+                            size: 12.0.wp,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(4.0.wp),
+                        child: Text(
+                          'Live Feed',
+                          style: TextStyle(
+                            fontSize: 5.0.wp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black.withOpacity(0.4),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: size.width * 0.04,
                   ),
                   Column(
                     children: [
@@ -195,29 +247,29 @@ class _ScannerViewState extends State<ScannerView> {
                           imageFromGallery();
                         },
                         style: OutlinedButton.styleFrom(
-                          shape: const CircleBorder(),
+                          shape: const StadiumBorder(),
                           side: BorderSide(
                             color: color,
-                            width: 0.8.wp,
+                            width: 1.0.wp,
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(4.0.wp),
+                          padding: EdgeInsets.all(3.6.wp),
                           child: Icon(
                             Icons.image,
-                            size: 10.0.wp,
+                            size: 10.4.wp,
                             color: Colors.black,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(2.0.wp),
+                        padding: EdgeInsets.all(3.6.wp),
                         child: Text(
                           'Gallery',
                           style: TextStyle(
                             fontSize: 5.0.wp,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.4),
                           ),
                         ),
                       ),

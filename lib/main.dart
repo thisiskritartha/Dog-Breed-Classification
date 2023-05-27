@@ -1,4 +1,5 @@
 import 'package:dog_breed_classification/views/homepage_view.dart';
+import 'package:dog_breed_classification/views/live_feed_view.dart';
 import 'package:dog_breed_classification/views/onboarding_view.dart';
 import 'package:dog_breed_classification/views/scanner_view.dart';
 import 'package:dog_breed_classification/views/welcome_view.dart';
@@ -27,14 +28,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'PupIdentify',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: showHome ? const HomepageView() : const OnBoardingScreen(),
-      getPages: [
-        GetPage(name: '/welcome_view', page: () => const WelcomeView()),
-        GetPage(name: '/scanner_view', page: () => const ScannerView()),
-      ],
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => const HomepageView(),
+        '/live_feed': (context) => const LiveFeedView(),
+      },
     );
   }
 }

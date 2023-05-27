@@ -46,6 +46,7 @@ List<String> breeds = [
   "Irish Spaniel",
   "Irish Wolfhound",
   "Japanese Spaniel",
+  "Japanese Spitz",
   "Komondor",
   "Labradoodle",
   "Labrador",
