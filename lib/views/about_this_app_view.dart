@@ -28,6 +28,7 @@ class _AboutThisAppState extends State<AboutThisApp> {
           ),
         ),
         backgroundColor: color,
+        centerTitle: true,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -35,19 +36,20 @@ class _AboutThisAppState extends State<AboutThisApp> {
             ExpansionTileWidget(
               title: 'How accurate is this app in general?',
               description:
-                  "Generally, the results of this app are quite accurate and at least comparable to the current state of the art. However, this app is still giving predictions only and those won't be right all the time.",
+                  "Generally, the results of this app are quite accurate and at least comparable to the current state of the art. However, this app is still giving predictions only and those won't be right all the time. \n"
+                  "Training Loss: 0.0378 \nTraining Accuracy: 97.66% \nValidation Loss: 0.8339 \nValidation Accuracy: 87.89%",
             ),
             ExpansionTileWidget(
               title: 'How accurate is this app exactly?',
               description:
-                  "This app was trained with 7,189 images to learn distinguishing 71 individual breeds. As evaluated on about 1,755 independent test images, there is a general probability of approximately 95% for the correct breed to be shown in the result. The threshold for our Model is 50% i.e Our app will only show the output if its Confidence level(or Probability) is more or equal to 50%. The mean and standard deviation of pixel values in an image or a set of images is taken as 127.5 for our application.",
+                  "This app was trained with 14,179 images to learn distinguishing 72 individual breeds. As evaluated on about 3,513 independent test images, there is a general probability of approximately 93.36% for the correct breed to be shown in the result. The threshold for our Model is 50% i.e Our app will only show the output if its Confidence level(or Probability) is more or equal to 50%. The mean and standard deviation of pixel values in an image or a set of images is taken as 127.5 for our application.",
             ),
             ExpansionTileWidget(
               title: 'What are the limitations of this app?',
               description:
                   "1) As our models are trained on specific views and perspectives of Dogs breed, dog images presented from a different angle or viewpoint than what the model has seen during training, it may struggle to correctly classify the image.\n "
                   "2) Our Model are sensitive to image quality factors such as lighting conditions, resolution, noise, and occlusions. Noisy or low-quality images may introduce artifacts or distortions that hinder accurate classification. \n"
-                  "3) Distinguishing between visually similar breeds can be challenging for our model. For example, differentiating between breeds of dogs that have similar physical appearances may lead to misclassifications. As French Bulldog and Pug have quite similar facial structure, sometimes our model outputs the incorrect result.",
+                  "3) Distinguishing between visually similar breeds can be challenging for our model. For example, differentiating between breeds of dogs that have similar physical appearances may lead to mis-classifications. As French Bulldog and Pug have quite similar facial structure, sometimes our model outputs the incorrect result.",
             ),
             Container(
               padding: EdgeInsets.all(4.0.wp),
@@ -89,7 +91,7 @@ class _AboutThisAppState extends State<AboutThisApp> {
                       color: Colors.black,
                     ),
                     title: Text(
-                      '9816395937',
+                      '+977 9812345678',
                       style: TextStyle(
                         fontSize: 4.8.wp,
                         fontWeight: FontWeight.w500,

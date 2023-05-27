@@ -2,11 +2,10 @@ import 'dart:io';
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:dog_breed_classification/extension/app_color.dart';
+import '../widgets/image_view_widget.dart';
 import 'live_feed_view.dart';
 
 class ScannerView extends StatefulWidget {
@@ -91,6 +90,51 @@ class _ScannerViewState extends State<ScannerView> {
     );
   }
 
+  Column appFeatures({
+    required icon,
+    required text,
+    required onPressed,
+    shape,
+    width,
+    iconPadding,
+    textPadding,
+    iconSize,
+  }) {
+    return Column(
+      children: [
+        OutlinedButton(
+          onPressed: onPressed,
+          style: OutlinedButton.styleFrom(
+            shape: shape ?? const StadiumBorder(),
+            side: BorderSide(
+              color: color,
+              width: width ?? 1.0.wp,
+            ),
+          ),
+          child: Padding(
+            padding: iconPadding ?? EdgeInsets.all(4.6.wp),
+            child: Icon(
+              icon,
+              size: iconSize ?? 9.4.wp,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        Padding(
+          padding: textPadding ?? EdgeInsets.all(2.0.wp),
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 5.0.wp,
+              fontWeight: FontWeight.bold,
+              color: Colors.black.withOpacity(0.4),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -99,31 +143,7 @@ class _ScannerViewState extends State<ScannerView> {
         Positioned(
           height: size.height * 0.44,
           width: size.width,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10.0.wp),
-                bottomRight: Radius.circular(10.0.wp),
-              ),
-              boxShadow: const [
-                BoxShadow(
-                  blurRadius: 10.0,
-                  color: Colors.grey,
-                  offset: Offset(10, 10),
-                )
-              ],
-              image: _image == null
-                  ? const DecorationImage(
-                      image: AssetImage('assets/images/background.jpg'),
-                      fit: BoxFit.cover,
-                    )
-                  : DecorationImage(
-                      image: FileImage(File(_image!.path)),
-                      fit: BoxFit.cover,
-                    ),
-            ),
-          ),
+          child: ImageViewWidget(image: _image),
         ),
         Positioned(
           top: size.height * 0.5,
@@ -159,121 +179,42 @@ class _ScannerViewState extends State<ScannerView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    children: [
-                      OutlinedButton(
-                        onPressed: () {
-                          imageFromCamera();
-                        },
-                        style: OutlinedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          side: BorderSide(
-                            color: color,
-                            width: 1.0.wp,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(4.6.wp),
-                          child: Icon(
-                            FontAwesomeIcons.camera,
-                            size: 9.4.wp,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(2.0.wp),
-                        child: Text(
-                          'Take Photo',
-                          style: TextStyle(
-                            fontSize: 5.0.wp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black.withOpacity(0.4),
-                          ),
-                        ),
-                      ),
-                    ],
+                  appFeatures(
+                    icon: FontAwesomeIcons.camera,
+                    text: 'Take Photo',
+                    onPressed: () {
+                      imageFromCamera();
+                    },
                   ),
                   SizedBox(
-                    width: size.width * 0.04,
+                    width: size.width * 0.01,
                   ),
-                  Column(
-                    children: [
-                      OutlinedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LiveFeedView(),
-                            ),
-                          );
-                        },
-                        style: OutlinedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          side: BorderSide(
-                            color: color,
-                            width: 1.5.wp,
-                          ),
+                  appFeatures(
+                    icon: FontAwesomeIcons.video,
+                    text: 'Live Feed',
+                    shape: const CircleBorder(),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LiveFeedView(),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.all(7.0.wp),
-                          child: Icon(
-                            FontAwesomeIcons.video,
-                            size: 12.0.wp,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(4.0.wp),
-                        child: Text(
-                          'Live Feed',
-                          style: TextStyle(
-                            fontSize: 5.0.wp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black.withOpacity(0.4),
-                          ),
-                        ),
-                      ),
-                    ],
+                      );
+                    },
+                    width: 1.5.wp,
+                    iconPadding: EdgeInsets.all(7.0.wp),
+                    textPadding: EdgeInsets.all(4.0.wp),
+                    iconSize: 12.0.wp,
                   ),
                   SizedBox(
-                    width: size.width * 0.04,
+                    width: size.width * 0.01,
                   ),
-                  Column(
-                    children: [
-                      OutlinedButton(
-                        onPressed: () {
-                          imageFromGallery();
-                        },
-                        style: OutlinedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          side: BorderSide(
-                            color: color,
-                            width: 1.0.wp,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(3.6.wp),
-                          child: Icon(
-                            Icons.image,
-                            size: 10.4.wp,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(3.6.wp),
-                        child: Text(
-                          'Gallery',
-                          style: TextStyle(
-                            fontSize: 5.0.wp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black.withOpacity(0.4),
-                          ),
-                        ),
-                      ),
-                    ],
+                  appFeatures(
+                    icon: Icons.image,
+                    text: 'From Gallery',
+                    onPressed: () {
+                      imageFromGallery();
+                    },
                   ),
                 ],
               )

@@ -19,9 +19,25 @@ class HomepageView extends StatefulWidget {
 class _HomepageViewState extends State<HomepageView> {
   int currentIndex = 0;
 
+  GButton navButton(BuildContext context,
+      {required icon, required text, onPressed}) {
+    return GButton(
+      icon: icon,
+      text: text,
+      iconActiveColor: Colors.white,
+      iconColor: Colors.white,
+      textStyle: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        letterSpacing: 0.2.wp,
+        fontSize: 4.6.wp,
+      ),
+      onPressed: onPressed,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     final List<Widget> pages = [
       const ScannerView(),
       const AvailableBreedsView(),
@@ -29,7 +45,9 @@ class _HomepageViewState extends State<HomepageView> {
     ];
 
     return Scaffold(
-      body: SafeArea(child: pages[currentIndex]),
+      body: SafeArea(
+        child: pages[currentIndex],
+      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: color,
@@ -52,17 +70,10 @@ class _HomepageViewState extends State<HomepageView> {
             tabBackgroundColor: Colors.black12,
             padding: EdgeInsets.all(3.0.wp),
             tabs: [
-              GButton(
+              navButton(
+                context,
                 icon: FontAwesomeIcons.camera,
                 text: 'Scanner',
-                iconActiveColor: Colors.white,
-                iconColor: Colors.white,
-                textStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.2.wp,
-                  fontSize: 4.6.wp,
-                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -72,29 +83,15 @@ class _HomepageViewState extends State<HomepageView> {
                   );
                 },
               ),
-              GButton(
+              navButton(
+                context,
                 icon: FontAwesomeIcons.search,
                 text: 'Available Breeds',
-                iconActiveColor: Colors.white,
-                iconColor: Colors.white,
-                textStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.2.wp,
-                  fontSize: 4.6.wp,
-                ),
               ),
-              GButton(
+              navButton(
+                context,
                 icon: FontAwesomeIcons.dog,
                 text: 'About this App',
-                iconActiveColor: Colors.white,
-                iconColor: Colors.white,
-                textStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.2.wp,
-                  fontSize: 4.6.wp,
-                ),
               ),
             ],
             selectedIndex: currentIndex,

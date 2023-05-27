@@ -31,7 +31,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 onLastPage = (index == 2);
               });
             },
-            children: <Widget>[
+            children: const <Widget>[
               IntroPage1(
                 image: "assets/images/logo2.png",
                 title: "Welcome to Dog Scanner",
@@ -49,7 +49,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
           // dot indicators
           Container(
-            alignment: Alignment(0, 0.75),
+            alignment: const Alignment(0, 0.75),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -58,7 +58,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onTap: () {
                     _controller.jumpToPage(2);
                   },
-                  child: Text(
+                  child: const Text(
                     'Skip',
                     style: TextStyle(
                       fontSize: 18,
@@ -83,7 +83,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             ),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           'Done',
                           style: TextStyle(
                             fontSize: 18,
@@ -93,10 +93,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     : GestureDetector(
                         onTap: () {
                           _controller.nextPage(
-                              duration: Duration(milliseconds: 100),
+                              duration: const Duration(milliseconds: 100),
                               curve: Curves.easeIn);
                         },
-                        child: Text(
+                        child: const Text(
                           'Next',
                           style: TextStyle(
                             fontSize: 18,

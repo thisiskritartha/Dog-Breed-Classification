@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../extension/app_color.dart';
+import '../widgets/live_feed_widget.dart';
 
 class LiveFeedView extends StatefulWidget {
   const LiveFeedView({Key? key}) : super(key: key);
@@ -156,25 +155,7 @@ class _LiveFeedViewState extends State<LiveFeedView> {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.81,
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 20.0,
-                    color: Colors.grey,
-                    offset: Offset(20, 20),
-                  )
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(6.0.wp),
-                    bottomLeft: Radius.circular(6.0.wp)),
-                child: CameraPreview(_cameraController!),
-              ),
-            ),
+            LiveFeedWidget(cameraController: _cameraController),
             SizedBox(
               height: 7.4.wp,
             ),
