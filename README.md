@@ -7,7 +7,9 @@ Dog breed classification is a challenging task due to the wide variety of dog br
 
 ## Objective
 • Breed Classification
+
 • Real-Time Classification
+
 • Offline Functionality
 
 ## Screenshot of our Application
