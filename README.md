@@ -13,8 +13,8 @@ Dog breed classification is a challenging task due to the wide variety of dog br
 • Offline Functionality
 
 ## Screenshot of our Application
-<img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/d6f03a7e-9c5b-4af6-a149-33d2594833bd" alt="Image" width="280">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/bce70f7d-d5b2-472c-8f3e-448d0755649a" alt="Image" width="280">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/9daaac16-90f4-4ec5-8f57-aa9886d2cb72" alt="Image" width="280">
-<img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/615d000a-bce1-4910-8a8d-fae88fed5e8e" alt="Image" width="280">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/282c8c9b-c727-414f-bdf7-609e63928786" alt="Image" width="280">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/3947e131-c080-4d5e-b32b-5364bcc8bda0" alt="Image" width="280">
+<img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/d6f03a7e-9c5b-4af6-a149-33d2594833bd" alt="Image" width="240">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/bce70f7d-d5b2-472c-8f3e-448d0755649a" alt="Image" width="240">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/9daaac16-90f4-4ec5-8f57-aa9886d2cb72" alt="Image" width="240">
+<img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/615d000a-bce1-4910-8a8d-fae88fed5e8e" alt="Image" width="240">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/282c8c9b-c727-414f-bdf7-609e63928786" alt="Image" width="240">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/3947e131-c080-4d5e-b32b-5364bcc8bda0" alt="Image" width="240">
 
             
 
