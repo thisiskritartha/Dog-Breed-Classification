@@ -6,9 +6,9 @@ A Flutter Mobile Application to classify the 72 Dogs Breed(including Himalayan S
 Dog breed classification is a challenging task due to the wide variety of dog breeds with subtle differences in appearance. Convolutional Neural Networks (CNNs) have shown remarkable performance in image classification tasks, making them an ideal choice for dog breed recognition. In this project, we propose a CNN-based approach for dog breed classification.
 
 ## Objective
-•	Breed Classification
-•	Real-Time Classification
-•	Offline Functionality
+• Breed Classification
+• Real-Time Classification
+• Offline Functionality
 
 ## Screenshot of our Application
 <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/d6f03a7e-9c5b-4af6-a149-33d2594833bd" alt="Image" width="280">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/bce70f7d-d5b2-472c-8f3e-448d0755649a" alt="Image" width="280">            <img src="https://github.com/thisiskritartha/Dog-Breed-Classification/assets/67311836/9daaac16-90f4-4ec5-8f57-aa9886d2cb72" alt="Image" width="280">
