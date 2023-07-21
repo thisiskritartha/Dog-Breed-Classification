@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: showHome ? const HomepageView() : const OnBoardingScreen(),
-      initialRoute: '/home',
       routes: {
         '/home': (context) => const HomepageView(),
         '/live_feed': (context) => const LiveFeedView(),

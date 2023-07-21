@@ -79,8 +79,8 @@ class _LiveFeedViewState extends State<LiveFeedView> {
 
   loadModel() async {
     await Tflite.loadModel(
-      model: "assets/ml/model_v2.tflite",
-      labels: "assets/ml/labels_v2.txt",
+      model: "assets/ml/model_v3.tflite",
+      labels: "assets/ml/labels_v3.txt",
     );
   }
 

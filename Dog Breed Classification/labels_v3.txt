@@ -1,0 +1,74 @@
+Afghan
+African_wild_dog
+Airedale
+American Hairless
+American Spaniel
+Basenji
+Basset
+Beagle
+Bearded collie
+Bermaise
+Bichon Frise
+Blenheim
+Bloodhound
+Bluetick
+Border collie
+Borzoi
+Boston Terrier
+Boxer
+Bull Mastiff
+Bull Terrier
+Bulldog
+Cairn
+Chihuahua
+Chinese Crested
+Chow
+Clumber
+Cockapoo
+Cocker
+Collie
+Corgi
+Coyote
+Dalmation
+Dhole
+Dingo
+Doberman
+Elk hound
+French bulldog
+German Sheperd
+Golden Retriever
+Great Dane
+Great Perenees
+Greyhound
+Groenendael
+Himalayan Sheepdog
+Human Beings
+Irish Spaniel
+Irish Wolfhound
+Japanese Spaniel
+Japanese Spitz
+Komondor
+Labradoodle
+Labrador
+Lhasa
+Malinois
+Maltese
+Mexican Hairless
+Newfoundland
+Other
+Pekinese
+Pit Bull
+Pomeranian
+Poodle
+Pug
+Rhodesian
+Rottweiler
+Saint Bernard
+Schnauzer
+Scotch Terrier
+Shar_Pei
+Shiba Inu
+Shih-Tzu
+Siberian Husky
+Vizsla
+Yorkshire Terrier
