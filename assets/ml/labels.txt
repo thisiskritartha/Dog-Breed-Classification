@@ -1,0 +1,11 @@
+Carcinoma
+Germinoma
+Glioma
+Granuloma
+Meduloblastoma
+Meningioma
+Neurocytoma
+Normal
+Papiloma
+Schwannoma
+Tuberculoma

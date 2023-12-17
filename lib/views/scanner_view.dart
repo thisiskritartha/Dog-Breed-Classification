@@ -176,47 +176,43 @@ class _ScannerViewState extends State<ScannerView> {
               SizedBox(
                 height: size.height * 0.09,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  appFeatures(
-                    icon: FontAwesomeIcons.camera,
-                    text: 'Take Photo',
-                    onPressed: () {
-                      imageFromCamera();
-                    },
-                  ),
-                  SizedBox(
-                    width: size.width * 0.01,
-                  ),
-                  appFeatures(
-                    icon: FontAwesomeIcons.video,
-                    text: 'Live Feed',
-                    shape: const CircleBorder(),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LiveFeedView(),
-                        ),
-                      );
-                    },
-                    width: 1.5.wp,
-                    iconPadding: EdgeInsets.all(7.0.wp),
-                    textPadding: EdgeInsets.all(4.0.wp),
-                    iconSize: 12.0.wp,
-                  ),
-                  SizedBox(
-                    width: size.width * 0.01,
-                  ),
-                  appFeatures(
-                    icon: Icons.image,
-                    text: 'From Gallery',
-                    onPressed: () {
-                      imageFromGallery();
-                    },
-                  ),
-                ],
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    appFeatures(
+                      icon: FontAwesomeIcons.camera,
+                      text: 'Take Photo',
+                      onPressed: () {
+                        imageFromCamera();
+                      },
+                    ),
+                    appFeatures(
+                      icon: FontAwesomeIcons.video,
+                      text: 'Live Feed',
+                      shape: const CircleBorder(),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LiveFeedView(),
+                          ),
+                        );
+                      },
+                      width: 1.5.wp,
+                      iconPadding: EdgeInsets.all(7.0.wp),
+                      textPadding: EdgeInsets.all(4.0.wp),
+                      iconSize: 12.0.wp,
+                    ),
+                    appFeatures(
+                      icon: Icons.image,
+                      text: 'Gallery',
+                      onPressed: () {
+                        imageFromGallery();
+                      },
+                    ),
+                  ],
+                ),
               )
             ],
           ),
