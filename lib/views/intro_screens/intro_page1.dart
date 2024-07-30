@@ -1,6 +1,6 @@
+import 'package:dog_breed_classification/extension/app_color.dart';
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'package:flutter/material.dart';
-import 'package:dog_breed_classification/extension/app_color.dart';
 
 class IntroPage1 extends StatelessWidget {
   const IntroPage1({
@@ -30,7 +30,7 @@ class IntroPage1 extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: 7.55.wp,
+                fontSize: 6.0.wp,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -39,7 +39,7 @@ class IntroPage1 extends StatelessWidget {
               description,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 5.0.wp,
+                fontSize: 4.0.wp,
               ),
             )
           ],

@@ -1,7 +1,5 @@
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class IntroPage2 extends StatelessWidget {
   const IntroPage2({
@@ -35,7 +33,7 @@ class IntroPage2 extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                  fontSize: 7.55.wp,
+                  fontSize: 6.0.wp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -44,7 +42,7 @@ class IntroPage2 extends StatelessWidget {
                 description,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0.wp,
+                  fontSize: 4.0.wp,
                 ),
               ),
             ],

@@ -1,8 +1,8 @@
 import 'package:dog_breed_classification/extension/app_color.dart';
 import 'package:dog_breed_classification/extension/extension.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class IntroPage3 extends StatefulWidget {
   const IntroPage3({Key, key}) : super(key: key);
@@ -73,7 +73,7 @@ class _IntroPage3State extends State<IntroPage3> {
               Text(
                 'We need Access',
                 style: TextStyle(
-                  fontSize: 7.55.wp,
+                  fontSize: 6.0.wp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -82,7 +82,7 @@ class _IntroPage3State extends State<IntroPage3> {
                 'To identify dog breeds, we need access to the camera and gallery of your device.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 5.0.wp,
+                  fontSize: 4.0.wp,
                 ),
               ),
               SizedBox(height: 1.0.wp),
